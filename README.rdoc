@@ -1,5 +1,7 @@
 = ruby-redtail
 
+http://static.brandnewbox.com/misc/ruby-redtail.png
+
 Description goes here.
 
 == Installation
@@ -31,7 +33,7 @@ Create a file in `config/initializers/ruby-redtail.rb` and add your API Key, Use
 === Fetching UserKey
 
     RubyRedtail::User.authenticate_via_basic('frank', 'top_secret') do |user|
-      @user_key = user.authentication['UserKey']
+      @user_key = user.user_key
       # Now store that somewhere safe!
     end
     

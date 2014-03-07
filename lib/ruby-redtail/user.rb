@@ -1,8 +1,3 @@
-# require 'ruby-redtail/addresses'
-# require 'ruby-redtail/notes'
-# require 'ruby-redtail/accounts'
-# require 'ruby-redtail/activities'
-# require 'ruby-redtail/tag_groups'
 require 'ruby-redtail/user/contacts'
 require 'ruby-redtail/user/settings'
 require 'ruby-redtail/authentication'
