@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/ruby-redtail/settings.rb",
     "lib/ruby-redtail/tag_groups.rb",
     "lib/ruby-redtail/user.rb",
+    "ruby-redtail.gemspec",
     "test/helper.rb",
     "test/user_test.rb"
   ]
