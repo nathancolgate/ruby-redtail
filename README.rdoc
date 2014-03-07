@@ -2,7 +2,7 @@
 
 http://static.brandnewbox.com/misc/ruby-redtail.png
 
-Description goes here.
+The gem provides access to methods to use the Redtail CRM API.
 
 == Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 == Basic Setup
 
-Create a file in `config/initializers/ruby-redtail.rb` and add your API Key, User Name, Password And API URI:
+To setup the client, you'll need the following configuration. In Rails land, you could create a file in `config/initializers/ruby-redtail.rb` (and if you're still storing top secret keys in your code repository, take the opportunity now to stop and start using ENV vars or something):
 
     RubyRedtail.configure do |config|
       config.api_key = ENV['REDTAIL_API_KEY']
@@ -32,10 +32,18 @@ Create a file in `config/initializers/ruby-redtail.rb` and add your API Key, Use
 
 === Fetching UserKey
 
-    RubyRedtail::User.authenticate_via_basic('frank', 'top_secret') do |user|
-      @user_key = user.user_key
-      # Now store that somewhere safe!
+Block-tastic!
+
+    @user = User.find(params[:id])
+    RubyRedtail::User.authenticate_via_basic(@user.redtail_username, @user.redtail_password) do |redtail_user|
+      @user.update_attribute(:redtail_userkey, redtail_user.user_key)
     end
+    
+This works too:
+
+    @user = User.find(params[:id])
+    @redtail_user = RubyRedtail::User.authenticate_via_basic(@user.redtail_username, @user.redtail_password)
+    @user.update_attribute(:redtail_userkey, @redtail_user.user_key)
     
 === Fetching Settings
 
