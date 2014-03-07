@@ -1,4 +1,4 @@
-= ruby-redtail
+= RubyRedtail
 
 http://static.brandnewbox.com/misc/ruby-redtail.png
 
@@ -30,34 +30,41 @@ To setup the client, you'll need the following configuration. In Rails land, you
     
 == Basic Usage
 
-=== Fetching UserKey
+=== Authentication Options
 
 Block-tastic!
 
-    @user = User.find(params[:id])
-    RubyRedtail::User.authenticate_via_basic(@user.redtail_username, @user.redtail_password) do |redtail_user|
-      @user.update_attribute(:redtail_userkey, redtail_user.user_key)
+    RubyRedtail::User.authenticate_via_basic('frank', 'secret') do |redtail_user|
+      # Something Cool
+    end
+    RubyRedtail::User.authenticate_via_user_key('key') do |redtail_user|
+      # Something Cool
+    end
+    RubyRedtail::User.authenticate_via_user_token('token') do |redtail_user|
+      # Something Cool
     end
     
 This works too:
 
-    @user = User.find(params[:id])
-    @redtail_user = RubyRedtail::User.authenticate_via_basic(@user.redtail_username, @user.redtail_password)
-    @user.update_attribute(:redtail_userkey, @redtail_user.user_key)
+    redtail_user = RubyRedtail::User.new('Basic','frank', 'secret')
+    redtail_user = RubyRedtail::User.new('UserKey','key')
+    redtail_user = RubyRedtail::User.new('UserToken','token')
+
+=== Fetching UserKey
+
+
+    puts redtail_user.user_key
     
+
 === Fetching Settings
 
-    RubyRedtail::User.authenticate_via_user_key(@user_key) do |user|
-      tag_groups = user.settings.taggroups
-    end
+    redtail_user.settings.taggroups
     
 === Fetching Contacts
 
-    RubyRedtail::User.authenticate_via_user_key(@user_key) do |user|
-      contacts = user.contacts.search_by_name('Investor')
-    end
+    redtail_user.contacts.search_by_name('Investor')
 
-== Contributing to ruby-redtail
+== Contributing to RubyRedtail
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
