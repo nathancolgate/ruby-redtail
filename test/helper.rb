@@ -1,19 +1,3 @@
-require 'simplecov'
-
-module SimpleCov::Configuration
-  def clean_filters
-    @filters = []
-  end
-end
-
-SimpleCov.configure do
-  clean_filters
-  load_adapter 'test_frameworks'
-end
-
-ENV["COVERAGE"] && SimpleCov.start do
-  add_filter "/.rvm/"
-end
 require 'rubygems'
 require 'bundler'
 begin
@@ -31,4 +15,18 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'ruby-redtail'
 
 class Test::Unit::TestCase
+  def setup
+    @redtail_api_key = 'E45FC97D-5AB2-4FD7-B05F-80BC64227A80'
+    @redtail_secret_key = '31CE58601D694E31B681C209D29936F6'
+    @redtail_uri = 'http://dev.api2.redtailtechnology.com/crm/v1/rest'
+    @redtail_user_key = 'CF5DAEC8-4F73-404C-9F1A-8C944F2DDC51'
+    @redtail_user_name = 'Statementone'
+    @redtail_user_password = 'sonedemo'
+    @num = 4
+    RubyRedtail.configure do |config|
+      config.api_key = @redtail_api_key
+      config.secret_key = @redtail_secret_key
+      config.api_uri = @redtail_uri
+    end
+  end
 end
