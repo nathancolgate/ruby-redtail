@@ -15,7 +15,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'ruby-redtail'
 
 class Test::Unit::TestCase
-  def setup
+  def setup_redtail
     @redtail_api_key = 'E45FC97D-5AB2-4FD7-B05F-80BC64227A80'
     @redtail_secret_key = '31CE58601D694E31B681C209D29936F6'
     @redtail_uri = 'http://dev.api2.redtailtechnology.com/crm/v1/rest'

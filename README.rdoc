@@ -25,6 +25,27 @@ Create a file in `config/initializers/ruby-redtail.rb` and add your API Key, Use
       config.secret_key = ENV['REDTAIL_SECRET_KEY']
       config.api_uri = ENV['REDTAIL_API_URI']
     end
+    
+== Basic Usage
+
+=== Fetching UserKey
+
+    RubyRedtail::User.authenticate_via_basic('frank', 'top_secret') do |user|
+      @user_key = user.authentication['UserKey']
+      # Now store that somewhere safe!
+    end
+    
+=== Fetching Settings
+
+    RubyRedtail::User.authenticate_via_user_key(@user_key) do |user|
+      tag_groups = user.settings.taggroups
+    end
+    
+=== Fetching Contacts
+
+    RubyRedtail::User.authenticate_via_user_key(@user_key) do |user|
+      contacts = user.contacts.search_by_name('Investor')
+    end
 
 == Contributing to ruby-redtail
  

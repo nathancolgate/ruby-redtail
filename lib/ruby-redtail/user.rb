@@ -1,15 +1,18 @@
-require 'ruby-redtail/contacts'
-require 'ruby-redtail/addresses'
-require 'ruby-redtail/notes'
-require 'ruby-redtail/accounts'
-require 'ruby-redtail/activities'
-require 'ruby-redtail/tag_groups'
-require 'ruby-redtail/settings'
+# require 'ruby-redtail/addresses'
+# require 'ruby-redtail/notes'
+# require 'ruby-redtail/accounts'
+# require 'ruby-redtail/activities'
+# require 'ruby-redtail/tag_groups'
+require 'ruby-redtail/user/contacts'
+require 'ruby-redtail/user/settings'
+require 'ruby-redtail/authentication'
+require 'ruby-redtail/sso'
 
 module RubyRedtail
   class User
     attr_accessor :api_hash
 
+    # http://help.redtailtechnology.com/entries/21654562-authentication-methods
     def initialize type, *args
       if type == "Basic"
         self.api_hash = "Basic " + Base64.strict_encode64("#{RubyRedtail.config.api_key}:#{args[0]}:#{args[1]}")
@@ -34,51 +37,33 @@ module RubyRedtail
       yield self.new('UserToken',token)
     end
     
-    # def self.method_missing(method_name, *args)
-    #   method_array = method_name.to_s.split('_')
-    #   if method_array.first == 'authenticate'
-    #     type = method_array[2]
-    #     type += ('' if type == 'basic') || ('auth' if type == 'userkey') || 'Auth'
-    #     yield RubyRedtail::User.new type.to_s.capitalize, *args
-    #   else
-    #     super
-    #   end
-    # end
-    
+    # UserKey Retrieval
+    # http://help.redtailtechnology.com/entries/22621068
+    # returns a UserKey in exchange for the Username and Password specified in the Authentication.
+	  def user_key
+	    authentication.user_key
+	  end
     def authentication
-      RubyRedtail::Query.run("authentication", self.api_hash, "GET")
+      RubyRedtail::Authentication.new(RubyRedtail::Query.run("authentication", self.api_hash, "GET"))
     end
 	  
+    # Single Sign-On
+    # http://help.redtailtechnology.com/entries/22602246
+    # returns a URL for Single Sign-On based on the specified endpoint.
+    # TODO: pass endpoint and id parameters
+    def sso_return_url
+      sso.return_url
+    end
 	  def sso
-      Redtail::Query.run("sso", self.api_hash, "GET")
+      RubyRedtail::Sso.new(RubyRedtail::Query.run("sso", self.api_hash, "GET"))
     end
 
     def contacts
-      RubyRedtail::Contacts.new self.api_hash
-    end
-
-    def addresses
-      RubyRedtail::Addresses.new self.api_hash
-    end
-
-    def notes
-      RubyRedtail::Notes.new self.api_hash
-    end
-
-    def accounts
-      RubyRedtail::Accounts.new self.api_hash
-    end
-
-    def activities
-      RubyRedtail::Activities.new self.api_hash
-    end
-
-    def tag_groups
-      RubyRedtail::TagGroups.new self.api_hash
+      RubyRedtail::User::Contacts.new self.api_hash
     end
 
     def settings
-      RubyRedtail::Settings.new self.api_hash
+      RubyRedtail::User::Settings.new self.api_hash
     end
   end
 end

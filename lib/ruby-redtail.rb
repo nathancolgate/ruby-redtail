@@ -5,6 +5,8 @@ require 'ruby-redtail/user'
 require 'ruby-redtail/exceptions'
 require 'ruby-redtail/query'
 
+require 'core_extensions/string'
+
 module RubyRedtail
   class << self
     attr_accessor :config
