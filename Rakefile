@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ruby-redtail"
   gem.homepage = "http://github.com/nathancolgate/ruby-redtail"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "nathancolgate@gmail.com"
-  gem.authors = ["Nathan Colgate Clark"]
+  gem.summary = %Q{A gem to access the Redtail CRM API}
+  gem.description = %Q{The gem offers various methods to access the Redtail CRM API}
+  gem.email = "nathan@brandnewbox.com"
+  gem.authors = ["Nathan Colgate"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

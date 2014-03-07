@@ -2,6 +2,30 @@
 
 Description goes here.
 
+== Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'ruby-redtail'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install ruby-redtail
+
+== Basic Setup
+
+Create a file in `config/initializers/ruby-redtail.rb` and add your API Key, User Name, Password And API URI:
+
+    RubyRedtail.configure do |config|
+      config.api_key = ENV['REDTAIL_API_KEY']
+      config.secret_key = ENV['REDTAIL_SECRET_KEY']
+      config.api_uri = ENV['REDTAIL_API_URI']
+    end
+
 == Contributing to ruby-redtail
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
@@ -12,8 +36,12 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+== Kudos
+
+To @sampritipanda for his help in the creation of this gem.
+
 == Copyright
 
-Copyright (c) 2014 Nathan Colgate Clark. See LICENSE.txt for
+Copyright (c) 2014 Nathan Colgate. See LICENSE.txt for
 further details.
 
