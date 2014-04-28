@@ -91,6 +91,18 @@ module RubyRedtail
           raise RubyRedtail::AuthenticationError
         end
       end
+      
+      def build_taggroup taggroup_hash
+        RubyRedtail::Taggroup.new(taggroup_hash,@api_hash)
+      end
+
+      def build_taggroups_array taggroup_hashes
+        if taggroup_hashes
+          taggroup_hashes.collect { |taggroup_hash| self.build_taggroup taggroup_hash }
+        else
+          raise RubyRedtail::AuthenticationError
+        end
+      end
 
     end
   end

@@ -33,7 +33,7 @@ class UserSettingsTest < Test::Unit::TestCase
   should "be able to fetch user taggroups" do
     taggroups = @user.settings.taggroups
     assert_equal(Array, taggroups.class)
-    assert_equal(RubyRedtail::Setting, taggroups.first.class)
+    assert_equal(RubyRedtail::Taggroup, taggroups.first.class)
   end
   
   should "be able to fetch user csl" do
