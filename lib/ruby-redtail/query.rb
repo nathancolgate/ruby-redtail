@@ -3,7 +3,7 @@ module RubyRedtail
     # TODO: Refactor (Lots of repetition)
     def self.run (uri, auth_hash, method, request_body = nil)
       base_uri = RubyRedtail.config.api_uri
-      if method == "GET" || method == "POST"
+      if method == "GET"
         @response = HTTParty.get(base_uri + uri, :headers => {"Authorization" => auth_hash, 'Content-Type' => 'text/json'}).parsed_response
       elsif method == "POST"
         @response = HTTParty.post(base_uri + uri, :headers => {"Authorization" => auth_hash, 'Content-Type' => 'text/json'}, :body => request_body.to_json).parsed_response

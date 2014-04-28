@@ -86,7 +86,7 @@ module RubyRedtail
 
       def build_settings_array setting_hashes
         if setting_hashes
-          setting_hashes.collect { |setting| self.build_setting setting }
+          setting_hashes.collect { |setting_hash| self.build_setting setting_hash }
         else
           raise RubyRedtail::AuthenticationError
         end

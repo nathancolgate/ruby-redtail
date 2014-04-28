@@ -53,7 +53,7 @@ This works too:
 === Fetching UserKey
 
 
-    puts redtail_user.user_key
+    redtail_user.user_key
     
 
 === Fetching Settings

@@ -22,6 +22,7 @@ class Test::Unit::TestCase
     @redtail_user_key = 'CF5DAEC8-4F73-404C-9F1A-8C944F2DDC51'
     @redtail_user_name = 'Statementone'
     @redtail_user_password = 'sonedemo'
+    @redtail_contact_id = 1624478 # Mary Investor
     @num = 4
     RubyRedtail.configure do |config|
       config.api_key = @redtail_api_key
