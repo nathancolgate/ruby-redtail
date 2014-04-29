@@ -1,3 +1,9 @@
+require 'ruby-redtail/contact/tag_groups'
+require 'ruby-redtail/contact/notes'
+require 'ruby-redtail/contact/accounts'
+require 'ruby-redtail/contact/activities'
+require 'ruby-redtail/contact/addresses'
+
 module RubyRedtail
   class Contact
     attr_accessor :api_hash, :id

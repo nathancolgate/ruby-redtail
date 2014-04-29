@@ -2,6 +2,7 @@ require "base64"
 require 'httparty'
 
 require 'ruby-redtail/user'
+require 'ruby-redtail/tag_group'
 require 'ruby-redtail/exceptions'
 require 'ruby-redtail/query'
 

@@ -34,8 +34,8 @@ module RubyRedtail
     
       # Tag Groups Fetch
       # returns a list of Tag Groups for a user's Database.
-      def taggroups
-        build_settings_array RubyRedtail::Query.run("settings/taggroups", @api_hash, "GET")
+      def tag_groups
+        build_tag_groups_array RubyRedtail::Query.run("settings/taggroups", @api_hash, "GET")
       end
 
       # Contact Status List Fetch
@@ -92,13 +92,29 @@ module RubyRedtail
         end
       end
       
-      def build_taggroup taggroup_hash
-        RubyRedtail::Taggroup.new(taggroup_hash,@api_hash)
+      def build_tag_group tag_group_hash
+        RubyRedtail::Taggroup.new(tag_group_hash,@api_hash)
       end
 
-      def build_taggroups_array taggroup_hashes
-        if taggroup_hashes
-          taggroup_hashes.collect { |taggroup_hash| self.build_taggroup taggroup_hash }
+      def build_tag_groups_array tag_group_hashes
+        if tag_group_hashes
+          tag_group_hashes.collect { |tag_group_hash| self.build_tag_group tag_group_hash }
+        else
+          raise RubyRedtail::AuthenticationError
+        end
+      end
+      
+      def build_tag_group tag_group_hash
+        if tag_group_hash
+          RubyRedtail::TagGroup.new(tag_group_hash,@api_hash)
+        else
+          raise RubyRedtail::AuthenticationError
+        end
+      end
+
+      def build_tag_groups_array tag_group_hashes
+        if tag_group_hashes
+          tag_group_hashes.collect { |tag_group_hash| self.build_tag_group tag_group_hash }
         else
           raise RubyRedtail::AuthenticationError
         end

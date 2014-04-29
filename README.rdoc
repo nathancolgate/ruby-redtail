@@ -58,7 +58,7 @@ This works too:
 
 === Fetching Settings
 
-    redtail_user.settings.taggroups
+    redtail_user.settings.tag_groups
     
 === Fetching Contacts
 
