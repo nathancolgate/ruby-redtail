@@ -16,7 +16,7 @@ module RubyRedtail
     end
     
     def contacts
-      build_contacts_array RubyRedtail::Query.run("taggroups/#{@id}/contacts", @api_hash, "GET")["TagMember_Result"]["TagMembers"]
+      build_contacts_array RubyRedtail::Query.run("taggroups/#{@id}/contacts", @api_hash, "GET")["TagMembers"]
     end
       
     private
