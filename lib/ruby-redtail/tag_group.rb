@@ -1,5 +1,3 @@
-require 'ruby-redtail/tag_group/contacts'
-
 module RubyRedtail
   class TagGroup
     
