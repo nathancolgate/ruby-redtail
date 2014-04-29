@@ -62,7 +62,7 @@ module RubyRedtail
       end
 
       def build_contacts_array contact_hashes
-        if client_hashes
+        if contact_hashes
           contact_hashes.collect { |contact_hash| self.build_contact contact_hash }
         else
           raise RubyRedtail::AuthenticationError
