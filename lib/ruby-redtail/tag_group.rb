@@ -7,8 +7,8 @@ module RubyRedtail
       raise ArgumentError unless tag_group['RecID']
       @id = tag_group['RecID']
       
-      raise ArgumentError if setting.class != Hash
-      setting.each do |key, value|
+      raise ArgumentError if tag_group.class != Hash
+      tag_group.each do |key, value|
         key = key.underscore
         self.class.send :attr_accessor, key
         instance_variable_set "@#{key}", value
