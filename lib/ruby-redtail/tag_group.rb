@@ -18,7 +18,7 @@ module RubyRedtail
     end
     
     def contacts
-      RubyRedtail::TagGroup::Contacts.new self.api_hash
+      RubyRedtail::TagGroup::Contacts.new(@id,@api_hash)
     end
     
   end
