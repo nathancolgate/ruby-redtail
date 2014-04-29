@@ -41,7 +41,7 @@ module RubyRedtail
     # end
     
     def tag_groups
-      build_tag_groups_array RubyRedtail::Query.run("contacts/#{@contact_id}/taggroups", @api_hash, "GET")["ArrayOfTagGroup"]
+      build_tag_groups_array RubyRedtail::Query.run("contacts/#{@contact_id}/taggroups", @api_hash, "GET")
     end
     
     # Fetch Contact By Contact Id
