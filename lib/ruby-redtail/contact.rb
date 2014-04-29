@@ -149,7 +149,7 @@ module RubyRedtail
 
     def build_tag_groups_array tag_group_hashes
       if tag_group_hashes
-        tag_group_hashes.collect { |tag_group_hash| self.build_tag_group tag_group_hash }
+        tag_group_hashes.collect { |tag_group_hash| build_tag_group tag_group_hash }
       else
         raise RubyRedtail::AuthenticationError
       end
